@@ -1,46 +1,31 @@
-# Genaral Settings
 version: 2.1
 jobs:
-  # Build jobu
-  build:
+  build-job:
     docker:
-      # CircleCI'ın resmi Docker image'ını kullanın
       image: circleci/openjdk:17
     steps:
-      # Projeyi kontrol altına alın
-      - checkout:
-          path: .
-      # Projeyi inşa edin
+      - checkout
       - run:
           name: Build
           command: mvn clean install
-  # Test jobu
-  test:
+
+  test-job:
     docker:
-      # CircleCI'ın resmi Docker image'ını kullanın
       image: circleci/openjdk:17
     steps:
-      # Projeyi kontrol altına alın
-      - checkout:
-          path: .
-      # Testleri çalıştırın
+      - checkout
       - run:
           name: Test
           command: mvn test
-  # Rapor jobu
-  report:
+
+  report-job:
     docker:
-      # CircleCI'ın resmi Docker image'ını kullanın
       image: circleci/openjdk:17
     steps:
-      # Projeyi kontrol altına alın
-      - checkout:
-          path: .
-      # Raporları oluşturun
+      - checkout
       - run:
           name: Report
           command: mvn allure:report
-      # Raporları görüntüleyin
       - run:
           name: View Report
           command: allure serve target/allure-results
