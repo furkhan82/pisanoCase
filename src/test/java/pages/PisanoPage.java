@@ -9,6 +9,7 @@ import utils.Driver;
 import java.util.List;
 
 public class PisanoPage {
+
     public PisanoPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
